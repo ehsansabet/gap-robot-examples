@@ -8,7 +8,7 @@ require dirname( __FILE__ ) . '/vendor/autoload.php';
 use Gap\SDP\Api;
 use ehsansabet\GapUtils\InlineCalendar;
 
-$token = 'c4e972b152b01ff0a23d7500d3356a2d2c3f504e5c9961d1028995d932a19b2e';
+$token = {YOUR-TOKEN};
 try {
 	$gap = new Api( $token );
 } catch ( Exception $e ) {
