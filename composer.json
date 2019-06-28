@@ -1,0 +1,16 @@
+{
+    "name": "ehsansabet/gap-robot-examples",
+    "description": "Sample robot for Gap messenger",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ehsan Sabet",
+            "email": "ehsan.sabet@hotmail.com"
+        }
+    ],
+    "require": {
+        "ehsansabet/gap-robot-utils": "dev-master",
+        "gapafzar/gap-sdp-api": "dev-master"
+    }
+}
