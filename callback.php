@@ -26,27 +26,27 @@ if ( $data == '/calendar' ) {
 	return $gap->sendText( $chat_id, 'تقویم', null, $InlineKeyboard );
 }
 
-if ( $type == 'triggerButton' ) {
-	$trigger = json_decode( $data );
-	$btnData = explode( '_', $trigger->data );
+if ($type == 'triggerButton') {
+	$trigger = json_decode($data);
+	$btnData = explode('-', $trigger->data);
 
-	if ( $btnData[0] == 'gotoMonth' ) {
-		$calendarConfig = [
-			'format' => $btnData[1]
-		];
-		$InlineKeyboard = InlineCalendar::show( $calendarConfig );
-		try {
-			return $gap->editMessage( $chat_id, (int) $trigger->message_id, null, $InlineKeyboard );
-		} catch ( Exception $e ) {
-			return;
-		}
+	if ($trigger->data == 'null') {
+		return $gap->answerCallback($chat_id, $trigger->callback_id, 'none', false);
 	}
 
-	if ( $trigger->data == 'null' ) {
-		return $gap->answerCallback( $chat_id, $trigger->callback_id, 'none', false );
+	if (!empty($btnData[0]) && !empty($btnData[1]) && !empty($btnData[2])) {
+		return $gap->answerCallback($chat_id, $trigger->callback_id, $trigger->data, true);
 	}
 
-	return $gap->answerCallback( $chat_id, $trigger->callback_id, $trigger->data, true );
+	$calendarConfig = [
+		'format' => $trigger->data
+	];
+	$InlineKeyboard = InlineCalendar::show($calendarConfig);
+	try {
+		return $gap->editMessage($chat_id, (int) $trigger->message_id, null, $InlineKeyboard);
+	} catch (Exception $e) {
+		return;
+	}
 }
 
-return $gap->sendText( $chat_id, 'برای نمایش تقویم /calendar را ارسال کنید.' );
+return $gap->sendText( $chat_id, 'برای نمایش تقویم /calendar را ارسال کنید.'
