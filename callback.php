@@ -49,4 +49,4 @@ if ($type == 'triggerButton') {
 	}
 }
 
-return $gap->sendText( $chat_id, 'برای نمایش تقویم /calendar را ارسال کنید.'
+return $gap->sendText( $chat_id, 'برای نمایش تقویم /calendar را ارسال کنید.');
